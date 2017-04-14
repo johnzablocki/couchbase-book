@@ -1,4 +1,4 @@
-# Couchbase Essentials Sample Appls #
+# Couchbase Essentials Sample Apps #
 
 The apps found here are sample ToDo apps to accompany the book Couchbase Essentials
 
