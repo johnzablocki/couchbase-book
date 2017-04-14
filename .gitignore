@@ -1,0 +1,11 @@
+# IDE - VSCode
+.vscode/*
+Python/.vscode/*
+NodeJS/.vscode/*
+Net/.vscode/*
+Ruby/.vscode/*
+Java/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
