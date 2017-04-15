@@ -1,3 +1,22 @@
-<p>
-  task-list works!
-</p>
+<h2>My Tasks</h2>
+
+<table class="table table-hover table-padded table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td><input type="checkbox" /></td>
+      <td>{{task.title}}</td>
+      <td>{{task.dueDate}}</td>
+      <td>
+        <a [routerLink]="['/edit', task.id]">Edit</a> | <a href="#">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

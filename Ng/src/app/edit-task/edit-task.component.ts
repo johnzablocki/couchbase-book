@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from './../task';
 
 @Component({
-  selector: 'app-new-task',
-  templateUrl: './new-task.component.html',
-  styleUrls: ['./new-task.component.css']
+  selector: 'app-edit-task',
+  templateUrl: './edit-task.component.html',
+  styleUrls: ['./edit-task.component.css']
 })
-export class NewTaskComponent implements OnInit {
+export class EditTaskComponent implements OnInit {
 
   newTask = new Task('');
-  newTaskForm: FormGroup;
+  editTaskForm: FormGroup;
   submitted = false;
 
   constructor(private fb: FormBuilder) {
@@ -22,29 +22,29 @@ export class NewTaskComponent implements OnInit {
 
   onSubmit() : void {
     this.submitted = true;
-    this.newTask = this.newTaskForm.value;
+    this.newTask = this.editTaskForm.value;
   }
 
   createForm() : void {
     
     var date = new Date();
     
-    this.newTaskForm = this.fb.group({
+    this.editTaskForm = this.fb.group({
       title: ['New task', Validators.required ],
       description: ['Task description', Validators.required],
       dueDate: date.getMonth() + 3 + "/" + date.getDay() + 1 + "/" + date.getFullYear(),
       parent: '1'
     });
 
-    this.newTaskForm.valueChanges
+    this.editTaskForm.valueChanges
         .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
   }
 
   onValueChanged(data?: any) : void {
-    if (! this.newTaskForm) { return; }
-    const form = this.newTaskForm;
+    if (! this.editTaskForm) { return; }
+    const form = this.editTaskForm;
     
     for(const field in this.formErrors) {
       this.formErrors[field] = '';
@@ -73,4 +73,5 @@ export class NewTaskComponent implements OnInit {
       'required' : 'Description is required'
     }
   }
+
 }
