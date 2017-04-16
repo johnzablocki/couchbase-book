@@ -1,28 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from './../task';
+import { TaskService } from './../task.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  styleUrls: ['./edit-task.component.css']
+  styleUrls: ['./edit-task.component.css'],
+  providers: [TaskService]
 })
-export class EditTaskComponent implements OnInit {
+export class EditTaskComponent implements OnInit, OnDestroy {
 
-  newTask = new Task('');
+  taskId: string;
+  task: Task;
+  sub: any;
   editTaskForm: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private taskService: TaskService) {    
     this.createForm();
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.taskId = params['id'];
+      this.taskService.getTask(this.taskId).then(task => {
+        this.task = task;
+        this.editTaskForm.setValue({
+          title: task.title,
+          description: task.description || '',
+          dueDate: task.dueDate || '',
+          parentId: task.parentId || ''
+        });
+      });      
+    });    
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   onSubmit() : void {
     this.submitted = true;
-    this.newTask = this.editTaskForm.value;
+    this.task = this.editTaskForm.value;
   }
 
   createForm() : void {
@@ -30,10 +51,10 @@ export class EditTaskComponent implements OnInit {
     var date = new Date();
     
     this.editTaskForm = this.fb.group({
-      title: ['New task', Validators.required ],
-      description: ['Task description', Validators.required],
+      title: ['', Validators.required ],
+      description: ['', Validators.required],
       dueDate: date.getMonth() + 3 + "/" + date.getDay() + 1 + "/" + date.getFullYear(),
-      parent: '1'
+      parentId: ''
     });
 
     this.editTaskForm.valueChanges

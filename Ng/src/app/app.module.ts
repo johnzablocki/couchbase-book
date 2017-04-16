@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
+import { MomentModule } from 'angular2-moment';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
 import { HomeComponent } from './home/home.component';
@@ -18,13 +18,14 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     HomeComponent,
     TaskListComponent,
     NewTaskComponent,
-    EditTaskComponent
+    EditTaskComponent    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    MomentModule,
     RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

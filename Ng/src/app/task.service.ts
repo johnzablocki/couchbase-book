@@ -1,19 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
+import { Http, Headers } from '@angular/http'
 import { Task } from './task';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TaskService {
   
-  private _url = "http://localhost:5000/tasks";
+  private _url = "http://localhost:5000/";
+  private _headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
   getTasks() : Promise<Task[]>  {
-    return this.http.get(this._url)
+    return this.http.get(this._url + "tasks")
       .toPromise()
       .then(response => response.json() as Task[])
+  }
+
+  getTask(key: string) : Promise<Task>  {
+    return this.http.get(this._url + "task/" + key)
+      .toPromise()
+      .then(response => response.json() as Task)
+  }
+
+  createTask(task) : Promise<any>  {
+    return this.http.post(this._url + "create", task, this._headers)
+      .toPromise()
+      .then(response => response.json())
   }
 
 }

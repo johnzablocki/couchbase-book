@@ -3,6 +3,7 @@ export class Task {
     title: string;
     description: string;
     isComplete: boolean;
+    dueDate: Date;
     parentId: string;    
 
     constructor(title: string, id?: string, description?: string) {
