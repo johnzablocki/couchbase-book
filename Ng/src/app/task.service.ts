@@ -29,4 +29,22 @@ export class TaskService {
       .then(response => response.json())
   }
 
+  editTask(key: string, task) : Promise<any>  {
+    return this.http.post(this._url + "edit/" + key, task, this._headers)
+      .toPromise()
+      .then(response => response.json())
+  }
+
+  completeTask(key: string) : Promise<any>  {
+    return this.http.post(this._url + "complete/" + key, this._headers)
+      .toPromise()
+      .then(response => response.json())
+  }
+
+  deleteTask(key: string) : Promise<any>  {
+    return this.http.post(this._url + "delete/" + key, this._headers)
+      .toPromise()
+      .then(response => response.json())
+  }
+
 }

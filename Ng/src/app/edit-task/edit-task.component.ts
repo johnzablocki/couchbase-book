@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from './../task';
 import { TaskService } from './../task.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-task',
@@ -15,10 +16,10 @@ export class EditTaskComponent implements OnInit, OnDestroy {
   taskId: string;
   task: Task;
   sub: any;
-  editTaskForm: FormGroup;
+  taskForm: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private taskService: TaskService) {    
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private taskService: TaskService) {    
     this.createForm();
   }
 
@@ -27,11 +28,12 @@ export class EditTaskComponent implements OnInit, OnDestroy {
       this.taskId = params['id'];
       this.taskService.getTask(this.taskId).then(task => {
         this.task = task;
-        this.editTaskForm.setValue({
+        this.taskForm.setValue({
           title: task.title,
           description: task.description || '',
           dueDate: task.dueDate || '',
-          parentId: task.parentId || ''
+          parentId: task.parentId || '',
+          isComplete: task.isComplete || false
         });
       });      
     });    
@@ -43,29 +45,32 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 
   onSubmit() : void {
     this.submitted = true;
-    this.task = this.editTaskForm.value;
+    this.task = this.taskForm.value;
+    this.taskService.editTask(this.taskId, this.task);
+    this.router.navigateByUrl('/tasks');
   }
 
   createForm() : void {
     
     var date = new Date();
     
-    this.editTaskForm = this.fb.group({
+    this.taskForm = this.fb.group({
       title: ['', Validators.required ],
       description: ['', Validators.required],
       dueDate: date.getMonth() + 3 + "/" + date.getDay() + 1 + "/" + date.getFullYear(),
-      parentId: ''
+      parentId: '',
+      isComplete: false
     });
 
-    this.editTaskForm.valueChanges
+    this.taskForm.valueChanges
         .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
   }
 
   onValueChanged(data?: any) : void {
-    if (! this.editTaskForm) { return; }
-    const form = this.editTaskForm;
+    if (! this.taskForm) { return; }
+    const form = this.taskForm;
     
     for(const field in this.formErrors) {
       this.formErrors[field] = '';

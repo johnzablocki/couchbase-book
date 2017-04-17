@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { TaskSelectorComponent } from './task-selector/task-selector.component';
+import { DeleteTaskComponent } from './delete-task/delete-task.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     HomeComponent,
     TaskListComponent,
     NewTaskComponent,
-    EditTaskComponent    
+    EditTaskComponent,
+    TaskSelectorComponent,
+    DeleteTaskComponent    
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
             { path: 'tasks', component: TaskListComponent },
             { path: 'new', component: NewTaskComponent },
             { path: 'edit/:id', component: EditTaskComponent },
+            { path: 'delete/:id', component: DeleteTaskComponent },
             { path: '**', redirectTo: 'home' }
         ])
   ],

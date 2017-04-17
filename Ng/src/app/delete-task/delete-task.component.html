@@ -1,0 +1,13 @@
+<h2>Confirm Delete</h2>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="alert text-danger bg-danger">
+      Are you sure you want to delete task '<strong>{{task.title}}</strong>'?
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+    <button class="btn btn-danger" (click)="delete()">Delete</button>
+  </div>
+</div>

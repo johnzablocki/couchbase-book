@@ -11,11 +11,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
-      <td><input type="checkbox" /></td>
+      <td><input type="checkbox" value="{{task.id}}" (click)="completeTask(task.id)"/></td>
       <td>{{task.title}}</td>
       <td>{{task.dueDate}}</td>
       <td>
-        <a [routerLink]="['/edit', task.id]">Edit</a> | <a href="#">Delete</a>
+        <a [routerLink]="['/edit', task.id]">Edit</a> |
+        <a [routerLink]="['/delete', task.id]">Delete</a>
       </td>
     </tr>
   </tbody>

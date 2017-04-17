@@ -26,3 +26,20 @@ def create():
     task = request.get_json()
     task_service.create_task(task)        
     return jsonify({'status': 'OK'})
+
+@app.route('/edit/<key>', methods=['post'])
+def edit(key):
+    task = request.get_json()
+    task_service.update_task(key, task)
+    return jsonify({'status': 'ok'})
+
+@app.route('/complete/<key>', methods=['post'])
+def complete(key):
+    task = request.get_json()
+    task_service.complete_task(key)
+    return jsonify({'status': 'ok'})
+
+@app.route('/delete/<key>', methods=['post'])
+def delete(key):
+    task_service.delete_task(key)
+    return jsonify({'status': 'ok'})

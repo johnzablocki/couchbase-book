@@ -1,0 +1,6 @@
+<div [formGroup]="taskForm">
+<select class="form-control" id="select" formControlName="parentId" >
+  <option selected="selected"></option>
+  <option *ngFor="let task of tasks" value={{task.id}}>{{task.title}}</option>
+</select>
+</div>

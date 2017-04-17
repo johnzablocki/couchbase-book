@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="editTaskForm" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <fieldset>
     <legend>Edit Task</legend>
     <div class="form-group">
@@ -30,13 +30,13 @@
     <div class="form-group">
       <label for="parent" class="col-lg-2 control-label">Parent</label>
       <div class="col-lg-10">
-        <select class="form-control" id="select" formControlName="parentId">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>                
+        <app-task-selector [group]="taskForm"></app-task-selector>                
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="parent" class="col-lg-2 control-label">Complete</label>
+      <div class="col-lg-10">
+        <input type="checkbox" formControlName="isComplete"/>
       </div>
     </div>
     <div class="form-group">
