@@ -1,0 +1,30 @@
+{
+  "name": "couchbase-todo",
+  "version": "1.0.0",
+  "description": "node.js couchbase essentials sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jzablocki/couchbase-book.git"
+  },
+  "keywords": [
+    "couchbase"
+  ],
+  "author": "John Zablocki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jzablocki/couchbase-book/issues"
+  },
+  "homepage": "https://github.com/jzablocki/couchbase-book#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "fibers": "^1.0.15",
+    "reload": "^1.1.2",
+    "uuid": "^3.0.1"
+  }
+}

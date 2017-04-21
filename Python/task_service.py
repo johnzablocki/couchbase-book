@@ -28,9 +28,6 @@ class TaskService(object):
         self._bucket.insert(str(key), task)
 
     def update_task(self, key, task):
-        if "id" in task:
-            del task["id"]
-        
         saved_task = self.get_task(key)
         saved_task["title"] = task["title"]
         saved_task["description"] = task["description"]
