@@ -39,7 +39,7 @@ export class NewTaskComponent implements OnInit {
     this.taskForm = this.fb.group({
       title: ['New task', Validators.required ],
       description: ['Task description', Validators.required],
-      dueDate: moment().add(7, 'days').format('YYYY-MM-DD'),
+      dueDate: moment().add(7, 'days').format('YYYY-MM-DDT00:00:00Z'),
       parentId: ''
     });
     

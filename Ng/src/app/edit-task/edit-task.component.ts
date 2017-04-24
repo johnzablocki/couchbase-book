@@ -4,6 +4,7 @@ import { Task } from './../task';
 import { TaskService } from './../task.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit-task',
@@ -31,7 +32,7 @@ export class EditTaskComponent implements OnInit, OnDestroy {
         this.taskForm.setValue({
           title: task.title,
           description: task.description || '',
-          dueDate: task.dueDate || '',
+          dueDate: task.dueDate || moment().add(7, 'days').format('YYYY-MM-DDT00:00:00Z'),
           parentId: task.parentId || '',
           isComplete: task.isComplete || false
         });
