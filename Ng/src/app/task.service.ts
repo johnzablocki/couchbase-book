@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TaskService {
   
-  private _url = "http://localhost:4567/";
+  private _url = "http://localhost:8000/";
   private _headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }

@@ -1,0 +1,4 @@
+[26-Apr-2017 20:37:19 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\php\ext\php_couchbase.dll' - The specified module could not be found.
+ in Unknown on line 0
+[26-Apr-2017 20:37:40 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'C:\php\ext\php_couchbase.dll' - The specified module could not be found.
+ in Unknown on line 0
